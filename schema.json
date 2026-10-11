@@ -1,0 +1,69 @@
+{
+  "customers": [
+    {
+      "name": "customer_id",
+      "type": "TEXT",
+      "not_null": false,
+      "primary_key_position": 1,
+      "default": null
+    },
+    {
+      "name": "name",
+      "type": "TEXT",
+      "not_null": false,
+      "primary_key_position": 0,
+      "default": null
+    },
+    {
+      "name": "registration_months",
+      "type": "INTEGER",
+      "not_null": false,
+      "primary_key_position": 0,
+      "default": null
+    },
+    {
+      "name": "ltv_usd",
+      "type": "REAL",
+      "not_null": false,
+      "primary_key_position": 0,
+      "default": null
+    },
+    {
+      "name": "total_orders",
+      "type": "INTEGER",
+      "not_null": false,
+      "primary_key_position": 0,
+      "default": null
+    }
+  ],
+  "tickets": [
+    {
+      "name": "ticket_id",
+      "type": "TEXT",
+      "not_null": false,
+      "primary_key_position": 1,
+      "default": null
+    },
+    {
+      "name": "customer_id",
+      "type": "TEXT",
+      "not_null": false,
+      "primary_key_position": 0,
+      "default": null
+    },
+    {
+      "name": "message",
+      "type": "TEXT",
+      "not_null": false,
+      "primary_key_position": 0,
+      "default": null
+    },
+    {
+      "name": "status",
+      "type": "TEXT",
+      "not_null": false,
+      "primary_key_position": 0,
+      "default": null
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[project]
+name = "smart-customer-compensation"
+version = "0.1.0"
+description = "Bounded customer compensation support and compliance audit CLI"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "langchain>=1,<2",
+    "langgraph>=1,<2",
+    "langchain-ollama>=1,<2",
+    "langchain-openai>=1,<2",
+    "pydantic>=2.12,<3",
+]

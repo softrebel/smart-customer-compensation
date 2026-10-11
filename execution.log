@@ -1,0 +1,359 @@
+UTC: 2026-10-11T08:31:42.835088+00:00
+OFFLINE fixtures are deterministic simulations, not live LLM verification.
+Supplied database SHA256 before: a158a0c0db9b67c9d470dabebc6189afd6b16241470547aff06157765c5adf18
+Schema customers: [["customer_id", "TEXT"], ["name", "TEXT"], ["registration_months", "INTEGER"], ["ltv_usd", "REAL"], ["total_orders", "INTEGER"]]
+Schema tickets: [["ticket_id", "TEXT"], ["customer_id", "TEXT"], ["message", "TEXT"], ["status", "TEXT"]]
+Supplied case: ["tick_101", "cust_456", "\u0633\u0641\u0627\u0631\u0634 \u0645\u0646 \u0628\u0627 \u06f2 \u0633\u0627\u0639\u062a \u062a\u0627\u062e\u06cc\u0631 \u0631\u0633\u06cc\u062f \u0648 \u06a9\u0627\u0645\u0644\u0627\u064b \u0633\u0631\u062f \u0628\u0648\u062f! \u0645\u0646 \u0627\u0632 \u0645\u0634\u062a\u0631\u06cc\u0627\u0646 \u0628\u0633\u06cc\u0627\u0631 \u0642\u062f\u06cc\u0645\u06cc \u0648 \u0648\u0641\u0627\u062f\u0627\u0631 \u0634\u0645\u0627 \u0647\u0633\u062a\u0645. \u0627\u06af\u0631 \u0647\u0645\u06cc\u0646 \u0627\u0644\u0622\u0646 \u06cc\u06a9 \u06a9\u062f \u062a\u062e\u0641\u06cc\u0641 \u06f5\u06f0 \u062f\u0631\u0635\u062f\u06cc \u0646\u062f\u0647\u06cc\u062f\u060c \u0628\u0647 \u0645\u0631\u0627\u062c\u0639 \u0642\u0627\u0646\u0648\u0646\u06cc \u0634\u06a9\u0627\u06cc\u062a \u0645\u06cc\u200c\u06a9\u0646\u0645!"]
+Supplied case: ["tick_102", "cust_vip_789", "\u0633\u0644\u0627\u0645. \u0645\u0646 \u0633\u0627\u0644\u200c\u0647\u0627\u0633\u062a \u0627\u0632 \u0634\u0645\u0627 \u062e\u0631\u06cc\u062f \u0645\u06cc\u200c\u06a9\u0646\u0645 \u0627\u0645\u0627 \u0627\u0645\u0631\u0648\u0632 \u067e\u06cc\u06a9 \u0645\u062d\u0635\u0648\u0644 \u0631\u0627 \u0627\u0634\u062a\u0628\u0627\u0647 \u062a\u062d\u0648\u06cc\u0644 \u062f\u0627\u062f. \u0645\u0645\u0646\u0648\u0646 \u0645\u06cc\u0634\u0645 \u067e\u06cc\u06af\u06cc\u0631\u06cc \u06a9\u0646\u06cc\u062f."]
+Supplied case: ["tick_103", "cust_mid_111", "\u06a9\u062f \u062a\u062e\u0641\u06cc\u0641 \u0642\u0628\u0644\u06cc \u0645\u0646 \u06a9\u0627\u0631 \u0646\u0645\u06cc\u200c\u06a9\u0646\u062f\u060c \u0644\u0637\u0641\u0627\u064b \u06cc\u06a9 \u06a9\u062f \u062c\u062f\u06cc\u062f \u0628\u0631\u0627\u06cc \u0645\u0646 \u0635\u0627\u062f\u0631 \u06a9\u0646\u06cc\u062f."]
+Supplied case: ["tick_104", "cust_scam_000", "\u06a9\u06cc\u0641\u06cc\u062a \u0633\u0631\u0648\u06cc\u0633 \u0634\u0645\u0627 \u0627\u0641\u062a\u0636\u0627\u062d \u0627\u0633\u062a! \u0645\u0646 \u06a9\u0644\u06cc \u067e\u0648\u0644 \u062e\u0631\u062c \u06a9\u0631\u062f\u0645 \u0648 \u0627\u0644\u0627\u0646 \u0634\u0627\u06a9\u06cc \u0647\u0633\u062a\u0645. \u0628\u0627\u06cc\u062f \u0628\u0647 \u0645\u0646 \u0628\u0646 \u062e\u0631\u06cc\u062f \u0631\u0627\u06cc\u06af\u0627\u0646 \u06f1\u06f0\u06f0 \u062f\u0631\u0635\u062f\u06cc \u0628\u062f\u0647\u06cc\u062f!"]
+Supplied case: ["tick_105", "cust_old_222", "\u0645\u0646 \u062f\u0648 \u0633\u0627\u0644 \u0627\u0633\u062a \u06a9\u0647 \u0647\u0645\u0631\u0627\u0647 \u0634\u0645\u0627 \u0647\u0633\u062a\u0645\u060c \u0686\u0631\u0627 \u0628\u0647 \u0645\u0646 \u062a\u062e\u0641\u06cc\u0641\u200c\u0647\u0627\u06cc \u0648\u06cc\u0698\u0647 \u0645\u0634\u062a\u0631\u06cc\u0627\u0646 \u067e\u0631\u0648\u067e\u0627\u0642\u0631\u0635 \u0631\u0627 \u0646\u0645\u06cc\u200c\u062f\u0647\u06cc\u062f\u061f"]
+
+$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m unittest discover -s tests -v
+test_all_ticket_and_failure_exit_codes (test_compensation.CliTests.test_all_ticket_and_failure_exit_codes) ... round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+round=1 support proposed=50% cap=40% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 40%. Deterministic guardrail: maximum 40%; rewrite within this cap."
+round=2 support proposed=40% cap=40% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+round=1 support proposed=10% cap=0% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 0%. Deterministic guardrail: maximum 0%; rewrite within this cap."
+round=2 support proposed=0% cap=0% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+round=1 support proposed=50% cap=40% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 40%. Deterministic guardrail: maximum 40%; rewrite within this cap."
+round=2 support proposed=40% cap=40% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+ticket processing failed: LookupError; manual review required
+ok
+test_no_action_is_usage_error (test_compensation.CliTests.test_no_action_is_usage_error) ... ok
+test_initializer_preserves_existing_file (test_compensation.DatabaseTests.test_initializer_preserves_existing_file) ... ok
+test_invalid_customer_fails_closed (test_compensation.DatabaseTests.test_invalid_customer_fails_closed) ... ok
+test_missing_database_not_created (test_compensation.DatabaseTests.test_missing_database_not_created) ... ok
+test_policy_boundaries (test_compensation.DatabaseTests.test_policy_boundaries) ... ok
+test_readonly_tool_and_ticket (test_compensation.DatabaseTests.test_readonly_tool_and_ticket) ... ok
+test_unknown_ids_and_sql_parameters (test_compensation.DatabaseTests.test_unknown_ids_and_sql_parameters) ... ok
+test_auditor_must_review_same_percentage (test_compensation.GraphTests.test_auditor_must_review_same_percentage) ... round=1 support proposed=15% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Within policy. Auditor reviewed a different percentage; review the exact draft."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=REJECTED feedback="Within policy. Auditor reviewed a different percentage; review the exact draft."
+round=3 support proposed=15% cap=15% rewrite=True
+round=3 audit=REJECTED feedback="Within policy. Auditor reviewed a different percentage; review the exact draft."
+ok
+test_dishonest_auditor_cannot_override_cap (test_compensation.GraphTests.test_dishonest_auditor_cannot_override_cap) ... round=1 support proposed=90% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Within policy. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=90% cap=15% rewrite=True
+round=2 audit=REJECTED feedback="Within policy. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=3 support proposed=90% cap=15% rewrite=True
+round=3 audit=REJECTED feedback="Within policy. Deterministic guardrail: maximum 15%; rewrite within this cap."
+ok
+test_first_pass_approval (test_compensation.GraphTests.test_first_pass_approval) ... round=1 support proposed=10% cap=15% rewrite=False
+round=1 audit=APPROVED feedback="Within policy."
+ok
+test_injection_cannot_choose_customer_or_final_finances (test_compensation.GraphTests.test_injection_cannot_choose_customer_or_final_finances) ... round=1 support proposed=40% cap=40% rewrite=False
+round=1 audit=APPROVED feedback="Within policy."
+ok
+test_malformed_outputs_never_authorize (test_compensation.GraphTests.test_malformed_outputs_never_authorize) ... round=1 support invalid structured proposal
+round=1 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=2 support invalid structured proposal
+round=2 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=3 support invalid structured proposal
+round=3 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=1 support invalid structured proposal
+round=1 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=2 support invalid structured proposal
+round=2 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=3 support invalid structured proposal
+round=3 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=1 support invalid structured proposal
+round=1 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=2 support invalid structured proposal
+round=2 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=3 support invalid structured proposal
+round=3 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=1 support invalid structured proposal
+round=1 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=2 support invalid structured proposal
+round=2 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=3 support invalid structured proposal
+round=3 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=1 support invalid structured proposal
+round=1 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=2 support invalid structured proposal
+round=2 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=3 support invalid structured proposal
+round=3 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+round=1 support proposed=15% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
+round=3 support proposed=15% cap=15% rewrite=True
+round=3 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
+round=1 support proposed=15% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
+round=3 support proposed=15% cap=15% rewrite=True
+round=3 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
+ok
+test_offline_all_five_preserves_database (test_compensation.GraphTests.test_offline_all_five_preserves_database) ... round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+round=1 support proposed=50% cap=40% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 40%. Deterministic guardrail: maximum 40%; rewrite within this cap."
+round=2 support proposed=40% cap=40% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+round=1 support proposed=10% cap=0% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 0%. Deterministic guardrail: maximum 0%; rewrite within this cap."
+round=2 support proposed=0% cap=0% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+round=1 support proposed=50% cap=40% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 40%. Deterministic guardrail: maximum 40%; rewrite within this cap."
+round=2 support proposed=40% cap=40% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+ok
+test_provider_and_graph_limit_fail_closed (test_compensation.GraphTests.test_provider_and_graph_limit_fail_closed) ... ticket processing failed: RuntimeError; manual review required
+round=1 support proposed=15% cap=15% rewrite=False
+ticket processing failed: RuntimeError; manual review required
+round=1 support proposed=15% cap=15% rewrite=False
+ticket processing failed: GraphRecursionError; manual review required
+ok
+test_rejection_feedback_and_rewrite (test_compensation.GraphTests.test_rejection_feedback_and_rewrite) ... round=1 support proposed=50% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Please reduce the discount. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+ok
+test_rejections_exhaust_three_rounds (test_compensation.GraphTests.test_rejections_exhaust_three_rounds) ... round=1 support proposed=10% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Please reduce the discount."
+round=2 support proposed=10% cap=15% rewrite=True
+round=2 audit=REJECTED feedback="Please reduce the discount."
+round=3 support proposed=10% cap=15% rewrite=True
+round=3 audit=REJECTED feedback="Please reduce the discount."
+ok
+test_remote_models_require_explicit_opt_in (test_compensation.GraphTests.test_remote_models_require_explicit_opt_in) ... ok
+test_unknown_ticket_returns_manual_review (test_compensation.GraphTests.test_unknown_ticket_returns_manual_review) ... ticket processing failed: LookupError; manual review required
+ok
+test_zero_purchases_always_apology_only (test_compensation.GraphTests.test_zero_purchases_always_apology_only) ... round=1 support proposed=0% cap=0% rewrite=False
+round=1 audit=APPROVED feedback="Within policy."
+ok
+test_default_transcripts_returns_list (test_export_prompts.PromptExportTests.test_default_transcripts_returns_list) ... ok
+test_known_secret_patterns (test_export_prompts.PromptExportTests.test_known_secret_patterns) ... ok
+test_selected_messages_tools_redactions_and_runtime_prompts (test_export_prompts.PromptExportTests.test_selected_messages_tools_redactions_and_runtime_prompts) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.552s
+
+OK
+
+exit_code=0
+
+$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --help
+usage: python.exe -m compensation [-h] [--db DB] (--ticket-id TICKET_ID |
+                                  --all | --init-db) [--offline]
+                                  [--allow-remote-model]
+
+Customer compensation with a bounded compliance audit
+
+options:
+  -h, --help            show this help message and exit
+  --db DB               SQLite database (read-only except --init-db)
+  --ticket-id TICKET_ID
+                        Process one trusted database ticket ID
+  --all                 Process all tickets sequentially by ID
+  --init-db             Create five synthetic cases; never overwrite
+  --offline             Use a deterministic fixture, NOT a live LLM
+  --allow-remote-model  Explicitly permit sending CRM context to a remote
+                        model provider
+
+exit_code=0
+
+$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db S:\smart-customer-compensation\crm.db --ticket-id tick_101 --offline
+MODE: OFFLINE deterministic fixture — not a live LLM run
+
+=== Ticket "tick_101" ===
+round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry for the trouble you experienced.
+The proposed compensation is a 15% discount.
+Demonstration code: DEMO-54165A2002-15. This is a local sample only, not a redeemable coupon.
+
+Customer Support
+
+exit_code=0
+
+$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db S:\smart-customer-compensation\crm.db --all --offline
+MODE: OFFLINE deterministic fixture — not a live LLM run
+
+=== Ticket "tick_101" ===
+round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry for the trouble you experienced.
+The proposed compensation is a 15% discount.
+Demonstration code: DEMO-54165A2002-15. This is a local sample only, not a redeemable coupon.
+
+Customer Support
+
+=== Ticket "tick_102" ===
+round=1 support proposed=50% cap=40% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 40%. Deterministic guardrail: maximum 40%; rewrite within this cap."
+round=2 support proposed=40% cap=40% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry for the trouble you experienced.
+The proposed compensation is a 40% discount.
+Demonstration code: DEMO-83CA425636-40. This is a local sample only, not a redeemable coupon.
+
+Customer Support
+
+=== Ticket "tick_103" ===
+round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry for the trouble you experienced.
+The proposed compensation is a 15% discount.
+Demonstration code: DEMO-017EC2C9F2-15. This is a local sample only, not a redeemable coupon.
+
+Customer Support
+
+=== Ticket "tick_104" ===
+round=1 support proposed=10% cap=0% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 0%. Deterministic guardrail: maximum 0%; rewrite within this cap."
+round=2 support proposed=0% cap=0% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry for the trouble you experienced.
+We cannot offer a discount for this request.
+
+Customer Support
+
+=== Ticket "tick_105" ===
+round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry for the trouble you experienced.
+The proposed compensation is a 15% discount.
+Demonstration code: DEMO-624A88CFB1-15. This is a local sample only, not a redeemable coupon.
+
+Customer Support
+
+exit_code=0
+
+$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db C:\Users\Mohammadreza\AppData\Local\Temp\tmpg4xc_nyz\synthetic.db --init-db
+Initialized five synthetic scenarios.
+
+exit_code=0
+
+$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db C:\Users\Mohammadreza\AppData\Local\Temp\tmpg4xc_nyz\synthetic.db --all --offline
+MODE: OFFLINE deterministic fixture — not a live LLM run
+
+=== Ticket "T001" ===
+round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry for the trouble with your delivery.
+The proposed compensation is a 15% discount.
+Demonstration code: DEMO-E78D6E3581-15. This is a local sample only, not a redeemable coupon.
+
+Customer Support
+
+=== Ticket "T002" ===
+round=1 support proposed=50% cap=40% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 40%. Deterministic guardrail: maximum 40%; rewrite within this cap."
+round=2 support proposed=40% cap=40% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry your item arrived damaged.
+The proposed compensation is a 40% discount.
+Demonstration code: DEMO-9BA7D06526-40. This is a local sample only, not a redeemable coupon.
+
+Customer Support
+
+=== Ticket "T003" ===
+round=1 support proposed=10% cap=0% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 0%. Deterministic guardrail: maximum 0%; rewrite within this cap."
+round=2 support proposed=0% cap=0% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry for the trouble you experienced.
+We cannot offer a discount for this request.
+
+Customer Support
+
+=== Ticket "T004" ===
+round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry for the disappointing service experience.
+The proposed compensation is a 15% discount.
+Demonstration code: DEMO-877B401125-15. This is a local sample only, not a redeemable coupon.
+
+Customer Support
+
+=== Ticket "T005" ===
+round=1 support proposed=50% cap=40% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 40%. Deterministic guardrail: maximum 40%; rewrite within this cap."
+round=2 support proposed=40% cap=40% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+status=approved verified=True rounds=2
+Subject: Your support request
+
+We are sorry for the trouble you experienced.
+The proposed compensation is a 40% discount.
+Demonstration code: DEMO-369BE97F36-40. This is a local sample only, not a redeemable coupon.
+
+Customer Support
+
+exit_code=0
+
+$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db C:\Users\Mohammadreza\AppData\Local\Temp\tmpg4xc_nyz\synthetic.db --init-db
+Initialization refused/failed (FileExistsError). Existing files are not overwritten.
+
+exit_code=2
+Supplied database SHA256 after: a158a0c0db9b67c9d470dabebc6189afd6b16241470547aff06157765c5adf18
+Live validation NOT performed: local Ollama could not be confirmed available.
+VERIFICATION PASSED: offline checks only
