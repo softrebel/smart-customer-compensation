@@ -217,6 +217,21 @@ class CliTests(DatabaseCase):
             self.assertEqual(main(["--db", str(self.db), "--ticket-id", "missing", "--offline"]), 1)
             self.assertEqual(main(["--db", str(self.db), "--init-db"]), 2)
 
+    def test_debug_ticket_runner(self):
+        import contextlib
+        import io
+        from debug_ticket import inspect_db, main as debug_main
+
+        self.assertEqual(inspect_db(self.db, "C001"), "T001")
+        self.assertEqual(inspect_db(self.db, "T001"), "T001")
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            code = debug_main(["--db", str(self.db), "--ticket-id", "C001", "--offline"])
+        self.assertEqual(code, 0)
+        self.assertIn("Starting LangGraph Stream", output.getvalue())
+        self.assertIn("Customer Profile", output.getvalue())
+
+
     def test_no_action_is_usage_error(self):
         import contextlib
         import io
