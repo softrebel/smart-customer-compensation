@@ -81,6 +81,27 @@ class DatabaseTests(DatabaseCase):
                 Customer(**values)
 
 
+    def test_proposal_normalization_and_robustness(self):
+        from compensation.models import AuditResult, Proposal
+
+        p = Proposal.model_validate({"issue": "wrong_item", "discount_percent": 20.0, "rationale": "courier error"})
+        self.assertEqual(p.issue, "delivery")
+        self.assertEqual(p.discount_percent, 20)
+
+        p2 = Proposal.model_validate({"issue": "courier_delay", "discount_percent": 15, "rationale": "late delivery"})
+        self.assertEqual(p2.issue, "delivery")
+
+        p3 = Proposal.model_validate({"issue": "damaged_box", "discount_percent": 10, "rationale": "broken"})
+        self.assertEqual(p3.issue, "damage")
+
+        p4 = Proposal.model_validate({"issue": "unknown_reason", "discount_percent": 5, "rationale": "other issue"})
+        self.assertEqual(p4.issue, "other")
+
+        a = AuditResult.model_validate({"is_verified": True, "reviewed_discount_percent": 20.0, "feedback": "Approved."})
+        self.assertEqual(a.reviewed_discount_percent, 20)
+
+
+
 class GraphTests(DatabaseCase):
     def run_graph(self, support, audits, ticket="T001", **kwargs):
         from compensation.pipeline import process_ticket
