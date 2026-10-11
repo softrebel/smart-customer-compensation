@@ -208,7 +208,7 @@ class GraphTests(DatabaseCase):
         from unittest.mock import patch
         from compensation.pipeline import create_model
 
-        for env in ({"COMPENSATION_PROVIDER": "openai"},
+        for env in ({"COMPENSATION_PROVIDER": "openai", "OPENAI_BASE_URL": ""},
                     {"COMPENSATION_PROVIDER": "openai", "OPENAI_BASE_URL": "https://api.openai.com/v1"},
                     {"COMPENSATION_PROVIDER": "ollama", "OLLAMA_BASE_URL": "https://example.com"},
                     {"COMPENSATION_PROVIDER": "unsupported"}):
@@ -265,6 +265,7 @@ class CliTests(DatabaseCase):
 
     def test_load_dotenv(self):
         import os
+        from unittest.mock import patch
         from compensation.__main__ import load_dotenv
 
         env_file = Path(self.directory.name) / "test.env"
@@ -275,7 +276,9 @@ class CliTests(DatabaseCase):
             "INVALID_LINE\n",
             encoding="utf-8",
         )
-        with unittest.mock.patch.dict("os.environ", {}, clear=True):
+        with patch.dict("os.environ", {}, clear=False):
+            os.environ.pop("TEST_CUSTOM_KEY", None)
+            os.environ.pop("TEST_NUMBER_VAL", None)
             load_dotenv(env_file)
             self.assertEqual(os.environ.get("TEST_CUSTOM_KEY"), "hello_world")
             self.assertEqual(os.environ.get("TEST_NUMBER_VAL"), "12345")

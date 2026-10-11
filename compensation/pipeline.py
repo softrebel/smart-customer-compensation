@@ -114,7 +114,7 @@ def create_model(*, allow_remote: bool = False):
             client_kwargs={"timeout": 60, "trust_env": False},
         )
     if provider == "openai":
-        base_url = os.environ.get("OPENAI_BASE_URL")
+        base_url = (os.environ.get("OPENAI_BASE_URL") or "").strip()
         # ponytail: treats unset/remote base_url as remote; loopback URL is local
         is_remote = True
         if base_url:

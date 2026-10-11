@@ -1,4 +1,4 @@
-UTC: 2026-10-11T08:31:42.835088+00:00
+UTC: 2026-10-11T11:00:00.038980+00:00
 OFFLINE fixtures are deterministic simulations, not live LLM verification.
 Supplied database SHA256 before: a158a0c0db9b67c9d470dabebc6189afd6b16241470547aff06157765c5adf18
 Schema customers: [["customer_id", "TEXT"], ["name", "TEXT"], ["registration_months", "INTEGER"], ["ltv_usd", "REAL"], ["total_orders", "INTEGER"]]
@@ -32,11 +32,18 @@ round=2 support proposed=40% cap=40% rewrite=True
 round=2 audit=APPROVED feedback="Within policy."
 ticket processing failed: LookupError; manual review required
 ok
+test_debug_ticket_runner (test_compensation.CliTests.test_debug_ticket_runner) ... round=1 support proposed=25% cap=15% rewrite=False
+round=1 audit=REJECTED feedback="Reduce discount to at most 15%. Deterministic guardrail: maximum 15%; rewrite within this cap."
+round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit=APPROVED feedback="Within policy."
+ok
+test_load_dotenv (test_compensation.CliTests.test_load_dotenv) ... ok
 test_no_action_is_usage_error (test_compensation.CliTests.test_no_action_is_usage_error) ... ok
 test_initializer_preserves_existing_file (test_compensation.DatabaseTests.test_initializer_preserves_existing_file) ... ok
 test_invalid_customer_fails_closed (test_compensation.DatabaseTests.test_invalid_customer_fails_closed) ... ok
 test_missing_database_not_created (test_compensation.DatabaseTests.test_missing_database_not_created) ... ok
 test_policy_boundaries (test_compensation.DatabaseTests.test_policy_boundaries) ... ok
+test_proposal_normalization_and_robustness (test_compensation.DatabaseTests.test_proposal_normalization_and_robustness) ... ok
 test_readonly_tool_and_ticket (test_compensation.DatabaseTests.test_readonly_tool_and_ticket) ... ok
 test_unknown_ids_and_sql_parameters (test_compensation.DatabaseTests.test_unknown_ids_and_sql_parameters) ... ok
 test_auditor_must_review_same_percentage (test_compensation.GraphTests.test_auditor_must_review_same_percentage) ... round=1 support proposed=15% cap=15% rewrite=False
@@ -59,47 +66,152 @@ ok
 test_injection_cannot_choose_customer_or_final_finances (test_compensation.GraphTests.test_injection_cannot_choose_customer_or_final_finances) ... round=1 support proposed=40% cap=40% rewrite=False
 round=1 audit=APPROVED feedback="Within policy."
 ok
-test_malformed_outputs_never_authorize (test_compensation.GraphTests.test_malformed_outputs_never_authorize) ... round=1 support invalid structured proposal
-round=1 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=2 support invalid structured proposal
-round=2 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=3 support invalid structured proposal
-round=3 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=1 support invalid structured proposal
-round=1 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=2 support invalid structured proposal
-round=2 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=3 support invalid structured proposal
-round=3 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=1 support invalid structured proposal
-round=1 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=2 support invalid structured proposal
-round=2 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=3 support invalid structured proposal
-round=3 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=1 support invalid structured proposal
-round=1 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=2 support invalid structured proposal
-round=2 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=3 support invalid structured proposal
-round=3 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=1 support invalid structured proposal
-round=1 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=2 support invalid structured proposal
-round=2 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
-round=3 support invalid structured proposal
-round=3 audit=REJECTED feedback="Invalid support output. Return the required fields and an integer percentage."
+test_malformed_outputs_never_authorize (test_compensation.GraphTests.test_malformed_outputs_never_authorize) ... round=1 support invalid structured proposal: 3 validation errors for Proposal
+issue
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+discount_percent
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+rationale
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+round=1 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=2 support invalid structured proposal: 3 validation errors for Proposal
+issue
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+discount_percent
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+rationale
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+round=2 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=3 support invalid structured proposal: 3 validation errors for Proposal
+issue
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+discount_percent
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+rationale
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+round=3 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=1 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be a valid integer [type=int_type, input_value='15', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/int_type
+round=1 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=2 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be a valid integer [type=int_type, input_value='15', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/int_type
+round=2 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=3 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be a valid integer [type=int_type, input_value='15', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/int_type
+round=3 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=1 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be greater than or equal to 0 [type=greater_than_equal, input_value=-1, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.14/v/greater_than_equal
+round=1 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=2 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be greater than or equal to 0 [type=greater_than_equal, input_value=-1, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.14/v/greater_than_equal
+round=2 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=3 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be greater than or equal to 0 [type=greater_than_equal, input_value=-1, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.14/v/greater_than_equal
+round=3 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=1 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be a valid integer [type=int_type, input_value=True, input_type=bool]
+    For further information visit https://errors.pydantic.dev/2.14/v/int_type
+round=1 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=2 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be a valid integer [type=int_type, input_value=True, input_type=bool]
+    For further information visit https://errors.pydantic.dev/2.14/v/int_type
+round=2 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=3 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be a valid integer [type=int_type, input_value=True, input_type=bool]
+    For further information visit https://errors.pydantic.dev/2.14/v/int_type
+round=3 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=1 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be less than or equal to 100 [type=less_than_equal, input_value=101, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal
+round=1 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=2 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be less than or equal to 100 [type=less_than_equal, input_value=101, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal
+round=2 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=3 support invalid structured proposal: 1 validation error for Proposal
+discount_percent
+  Input should be less than or equal to 100 [type=less_than_equal, input_value=101, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal
+round=3 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
 round=1 support proposed=15% cap=15% rewrite=False
+round=1 audit invalid structured output: 3 validation errors for AuditResult
+is_verified
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+reviewed_discount_percent
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+feedback
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
 round=1 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
 round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit invalid structured output: 3 validation errors for AuditResult
+is_verified
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+reviewed_discount_percent
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+feedback
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
 round=2 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
 round=3 support proposed=15% cap=15% rewrite=True
+round=3 audit invalid structured output: 3 validation errors for AuditResult
+is_verified
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+reviewed_discount_percent
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+feedback
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
 round=3 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
 round=1 support proposed=15% cap=15% rewrite=False
+round=1 audit invalid structured output: 1 validation error for AuditResult
+is_verified
+  Input should be a valid boolean [type=bool_type, input_value='true', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/bool_type
 round=1 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
 round=2 support proposed=15% cap=15% rewrite=True
+round=2 audit invalid structured output: 1 validation error for AuditResult
+is_verified
+  Input should be a valid boolean [type=bool_type, input_value='true', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/bool_type
 round=2 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
 round=3 support proposed=15% cap=15% rewrite=True
+round=3 audit invalid structured output: 1 validation error for AuditResult
+is_verified
+  Input should be a valid boolean [type=bool_type, input_value='true', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/bool_type
 round=3 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
 ok
 test_offline_all_five_preserves_database (test_compensation.GraphTests.test_offline_all_five_preserves_database) ... round=1 support proposed=25% cap=15% rewrite=False
@@ -123,9 +235,19 @@ round=1 audit=REJECTED feedback="Reduce discount to at most 40%. Deterministic g
 round=2 support proposed=40% cap=40% rewrite=True
 round=2 audit=APPROVED feedback="Within policy."
 ok
-test_provider_and_graph_limit_fail_closed (test_compensation.GraphTests.test_provider_and_graph_limit_fail_closed) ... ticket processing failed: RuntimeError; manual review required
+test_provider_and_graph_limit_fail_closed (test_compensation.GraphTests.test_provider_and_graph_limit_fail_closed) ... round=1 support invalid structured proposal: provider secret
+round=1 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=2 support invalid structured proposal: 
+round=2 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=3 support invalid structured proposal: 
+round=3 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
 round=1 support proposed=15% cap=15% rewrite=False
-ticket processing failed: RuntimeError; manual review required
+round=1 audit invalid structured output: provider secret
+round=1 audit=REJECTED feedback="Invalid structured audit output; no approval is accepted."
+round=2 support invalid structured proposal: 
+round=2 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
+round=3 support invalid structured proposal: 
+round=3 audit=REJECTED feedback="Invalid support output. Return valid structured fields: issue (one of: delivery, damage, service, other), discount_percent (integer between 0 and 15), and a rationale string."
 round=1 support proposed=15% cap=15% rewrite=False
 ticket processing failed: GraphRecursionError; manual review required
 ok
@@ -152,16 +274,18 @@ test_known_secret_patterns (test_export_prompts.PromptExportTests.test_known_sec
 test_selected_messages_tools_redactions_and_runtime_prompts (test_export_prompts.PromptExportTests.test_selected_messages_tools_redactions_and_runtime_prompts) ... ok
 
 ----------------------------------------------------------------------
-Ran 23 tests in 1.552s
+Ran 26 tests in 1.681s
 
 OK
+[DB] Note: 'C001' is a customer_id, mapped to ticket_id='T001'
+[DB] Found ticket_id='T001' (customer_id='C001')
 
 exit_code=0
 
 $ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --help
 usage: python.exe -m compensation [-h] [--db DB] (--ticket-id TICKET_ID |
                                   --all | --init-db) [--offline]
-                                  [--allow-remote-model]
+                                  [--allow-remote-model] [--env-file ENV_FILE]
 
 Customer compensation with a bounded compliance audit
 
@@ -175,6 +299,7 @@ options:
   --offline             Use a deterministic fixture, NOT a live LLM
   --allow-remote-model  Explicitly permit sending CRM context to a remote
                         model provider
+  --env-file ENV_FILE   Environment file to load (default: .env)
 
 exit_code=0
 
@@ -271,12 +396,12 @@ Customer Support
 
 exit_code=0
 
-$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db C:\Users\Mohammadreza\AppData\Local\Temp\tmpg4xc_nyz\synthetic.db --init-db
+$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db C:\Users\Mohammadreza\AppData\Local\Temp\tmppf4vazjn\synthetic.db --init-db
 Initialized five synthetic scenarios.
 
 exit_code=0
 
-$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db C:\Users\Mohammadreza\AppData\Local\Temp\tmpg4xc_nyz\synthetic.db --all --offline
+$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db C:\Users\Mohammadreza\AppData\Local\Temp\tmppf4vazjn\synthetic.db --all --offline
 MODE: OFFLINE deterministic fixture — not a live LLM run
 
 === Ticket "T001" ===
@@ -350,7 +475,7 @@ Customer Support
 
 exit_code=0
 
-$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db C:\Users\Mohammadreza\AppData\Local\Temp\tmpg4xc_nyz\synthetic.db --init-db
+$ S:\smart-customer-compensation\.venv\Scripts\python.exe -m compensation --db C:\Users\Mohammadreza\AppData\Local\Temp\tmppf4vazjn\synthetic.db --init-db
 Initialization refused/failed (FileExistsError). Existing files are not overwritten.
 
 exit_code=2
