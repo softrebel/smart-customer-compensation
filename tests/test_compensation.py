@@ -263,6 +263,24 @@ class CliTests(DatabaseCase):
         self.assertEqual(error.exception.code, 2)
 
 
+    def test_load_dotenv(self):
+        import os
+        from compensation.__main__ import load_dotenv
+
+        env_file = Path(self.directory.name) / "test.env"
+        env_file.write_text(
+            "# comment\n"
+            "export TEST_CUSTOM_KEY='hello_world'\n"
+            "TEST_NUMBER_VAL=12345 # inline comment\n"
+            "INVALID_LINE\n",
+            encoding="utf-8",
+        )
+        with unittest.mock.patch.dict("os.environ", {}, clear=True):
+            load_dotenv(env_file)
+            self.assertEqual(os.environ.get("TEST_CUSTOM_KEY"), "hello_world")
+            self.assertEqual(os.environ.get("TEST_NUMBER_VAL"), "12345")
+
+
 def proposal(amount, rationale="The complaint merits this compensation."):
     return dict(issue="other", discount_percent=amount, rationale=rationale)
 

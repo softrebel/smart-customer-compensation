@@ -8,6 +8,26 @@ from compensation.crm import initialize, ticket_ids
 from compensation.pipeline import MANUAL_RESPONSE, OfflineModel, create_model, process_ticket
 
 
+def load_dotenv(path: Path | str = ".env") -> None:
+    env_path = Path(path)
+    if not env_path.is_file():
+        return
+    for line in env_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        if line.startswith("export "):
+            line = line[7:].strip()
+        key, _, val = line.partition("=")
+        key = key.strip()
+        val = val.strip()
+        if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
+            val = val[1:-1]
+        elif " #" in val:
+            val = val.split(" #", 1)[0].strip()
+        os.environ.setdefault(key, val)
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description="Customer compensation with a bounded compliance audit")
     parser.add_argument("--db", type=Path, default=Path("crm.db"), help="SQLite database (read-only except --init-db)")
@@ -18,7 +38,11 @@ def main(argv=None) -> int:
     parser.add_argument("--offline", action="store_true", help="Use a deterministic fixture, NOT a live LLM")
     parser.add_argument("--allow-remote-model", action="store_true",
                         help="Explicitly permit sending CRM context to a remote model provider")
+    parser.add_argument("--env-file", type=Path, default=Path(".env"),
+                        help="Environment file to load (default: .env)")
     args = parser.parse_args(argv)
+    if args.env_file:
+        load_dotenv(args.env_file)
     logging.basicConfig(level=logging.INFO, format="%(message)s")
     if args.init_db:
         try:
